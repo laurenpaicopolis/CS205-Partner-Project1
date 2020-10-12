@@ -24,4 +24,6 @@ class SkierSnowboarder:
     
     def getHowFar(self):
       return self.howFar
+    
+    
 
