@@ -5,37 +5,35 @@ from numpy.random import randint
 seed(1)
 
 class SkiDay:
-  global skierSnowboarderList
-  global vtMountains
 
-  finalizedSkiDay = {}
+  def __init__(self):
+    self.skierSnowboarderList = []
+    self.vtMountains = []
+    self.finalizedSkiDay = {}
 
-  def __init__(self, vtMtn, skierSnowperson):
-    self.vtMtn = vtMtn
-    self.skierSnowperson = skierSnowperson
-
-  def getVTMountain(self):
-    return self.vtMtn
+  def getVTMountains(self):
+    return self.vtMountains
     
   def getSkierSnowboarder(self):
     return self.skierSnowperson
 
   def addSkierSnowboarder(self, skierToAdd):
-    for skier in skierSnowboarderList:
+    
+    for skier in self.skierSnowboarderList:
       if skier.getName() == skierToAdd.getName():
         # TODO: Make sure the same random number is not generated twice
         value = randint(0, 100, 1)
         skierToAdd.setName(skierToAdd.getName() + str(value))
-        skierSnowboarderList.append(skierToAdd)
+        self.skierSnowboarderList.append(skierToAdd)
 
   def addVermontMountains(self, mountainToAdd):
-    vtMountains.append(mountainToAdd)
+    self.vtMountains.append(mountainToAdd)
 
   def pickVermontMountain(self):
     global finalizedSkiDay
     addedNum = 0
     # go through each skier/snowboarder in the list
-    for person in skierSnowboarderList:
+    for person in self.skierSnowboarderList:
       # get the price wanting to pay, distance willing to go, and skill level of the skier/snowboader
       keyName = person.getName()
       finalizedSkiDay[keyName]
@@ -45,7 +43,7 @@ class SkiDay:
       
       # go through each mountain in the list of VT mountains to determine what 
       # trails on the mountains the skier/snowboader should go to
-      for vtmtn in vtMountains:
+      for vtmtn in self.vtMountains:
         # goes into determineTrailsForDay
         # determine the skill level of the skier/snowboarder (what trails they should go on)
         userMountainList.append(vtmtn)
@@ -62,7 +60,7 @@ class SkiDay:
           userMountainList.remove(vtmtn)
 
       # organize the dictionary with mountains and trails    
-      finalizedSkiDay[keyName]['VTMountain'] = userMountainList
+      self.finalizedSkiDay[keyName]['VTMountain'] = userMountainList
 
 
   def determineTrailsForDay(self):
@@ -73,7 +71,7 @@ class SkiDay:
     userTrailsDoubleBlack = []
     userTrailsGlade = []
     
-    for person in skierSnowboarderList:
+    for person in self.skierSnowboarderList:
       finalizedSkiDay[person.getName()]['VTMountain'] = userMountainList
       skillLevel = person.getSkillLevel()
       nightSkiing = person.getNightSkiing()
@@ -131,4 +129,11 @@ class SkiDay:
       finalizedSkiDay[person]['DoubleBlackTrails'] = userTrailsDoubleBlack
       finalizedSkiDay[person]['GladeTrails'] = userTrailsGlade
 
-# TODO: create getters for trails and dictionary
+  def getFinalizedSkiDay(self):
+    return self.finalizedSkiDay
+
+  def getSkierSnowboarderList(self):
+    return self.skierSnowboarderList
+  
+  def getVTMountainsList(self):
+    return self.vtMountains

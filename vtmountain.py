@@ -7,7 +7,7 @@ class vtmountain:
     global doubleBlackTrailObjects
     global gladeTrailObjects
     
-    def __init__(self, name, greenTrails, blueTrails, blackTrails, doubleBlackTrails, totalTrails, distanceFromUVM, nightSkiing, gladeTrials, dayPassPrice):
+    def __init__(self, name, greenTrails, blueTrails, blackTrails, doubleBlackTrails, gladeTrials, totalTrails, distanceFromUVM, nightSkiing,dayPassPrice):
       self.name = name
       self.greenTrails = greenTrails
       self.blackTrails = blackTrails
