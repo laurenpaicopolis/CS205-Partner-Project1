@@ -4,6 +4,7 @@ from numpy.random import seed
 from numpy.random import randint
 seed(1)
 
+
 class SkiDay:
 
   def __init__(self):
@@ -18,8 +19,10 @@ class SkiDay:
     return self.skierSnowperson
 
   def addSkierSnowboarder(self, skierToAdd):
-    
+    # go through each skier/snowboarder
     for skier in self.skierSnowboarderList:
+
+      # if two people have the same name, add a number to the end of their name
       if skier.getName() == skierToAdd.getName():
         # TODO: Make sure the same random number is not generated twice
         value = randint(0, 100, 1)

@@ -7,21 +7,21 @@ import skiday
 
 class TestSkiDay(unittest.TestCase):
   VTMountain = 0
+
   # set up classmethod
-  @classmethod
-  def setUpClass():
-    mtn1 = vtmountain.vtmountain("Bolton",5,4,6,2,1,18,50,True,65)
-    mtn2 = vtmountain.vtmountain("Stowe",2,3,2,1,1,9,120,True,105)
-    mtn3 = vtmountain.vtmountain("Jay Peak",3,4,1,2,1,11,110,True,90)
+  def setUpClass(self):
+    mtn1 = vtmountain.vtmountain("Bolton", 5, 4, 6, 2, 1, 18, 50, True, 65)
+    mtn2 = vtmountain.vtmountain("Stowe", 2, 3, 2, 1, 1, 9, 120, True, 105)
+    mtn3 = vtmountain.vtmountain("Jay Peak", 3, 4, 1, 2, 1, 11, 110, True, 90)
 
     # Green Trails
-    mtn1.setGreenTrailObjects("Round Robin","Green",True,"Bolton")
-    mtn1.setGreenTrailObjects("Magic Carpet","Green",True,"Bolton")
-    mtn1.setGreenTrailObjects("Slide","Green",True,"Bolton")
-    mtn1.setGreenTrailObjects("Snowball","Green",True,"Bolton")
-    mtn1.setGreenTrailObjects("Upper Villager","Green",True,"Bolton")
-    mtn2.setGreenTrailObjects("Cross Over","Green",False,"Stowe")
-    mtn2.setGreenTrailObjects("Inspiration","Green",False,"Stowe")
+    mtn1.setGreenTrailObjects("Round Robin", "Green", True, "Bolton")
+    mtn1.setGreenTrailObjects("Magic Carpet", "Green", True, "Bolton")
+    mtn1.setGreenTrailObjects("Slide", "Green", True, "Bolton")
+    mtn1.setGreenTrailObjects("Snowball", "Green", True, "Bolton")
+    mtn1.setGreenTrailObjects("Upper Villager", "Green", True, "Bolton")
+    mtn2.setGreenTrailObjects("Cross Over", "Green", False, "Stowe")
+    mtn2.setGreenTrailObjects("Inspiration", "Green", False, "Stowe")
 
     mtn3.setGreenTrailObjects("Deer Run", "Green", False, "Jay Peak")
     mtn3.setGreenTrailObjects("Queen's Highway", "Green", True, "Jay Peak")
@@ -37,24 +37,22 @@ class TestSkiDay(unittest.TestCase):
     mtn2.setBlueTrailObjects("Lower National", "Blue", False, "Stowe")
     mtn2.setBlueTrailObjects("Sunrise", "Blue", True, "Stowe")
 
-    mtn3.setBlueTrailObjects("Northway","Blue",False,
-    "Jay Peak")
-    mtn3.setBlueTrailObjects("Willard","Blue",True,
-    "Jay Peak")
-    mtn3.setBlueTrailObjects("Lower Milk Run","Blue",False,"Jay Peak")
-    mtn3.setBlueTrailObjects("Timbuktu","Blue",True,"Jay Peak")
+    mtn3.setBlueTrailObjects("Northway", "Blue", False, "Jay Peak")
+    mtn3.setBlueTrailObjects("Willard", "Blue", True, "Jay Peak")
+    mtn3.setBlueTrailObjects("Lower Milk Run", "Blue", False, "Jay Peak")
+    mtn3.setBlueTrailObjects("Timbuktu", "Blue", True, "Jay Peak")
 
 
     # Black Trails
-    mtn1.setBlackTrailObjects("Cougar","Black",False,"Bolton")
-    mtn1.setBlackTrailObjects("Bolton Outlaw","Black",False,"Bolton")
-    mtn1.setBlackTrailObjects("Upper Crossover","Black",False,"Bolton")
-    mtn1.setBlackTrailObjects("SpellBinder","Black",False,"Bolton")
-    mtn1.setBlackTrailObjects("Upper Tattle Tale","Black",False,"Bolton")
-    mtn1.setBlackTrailObjects("Hard Luck","Black",False,"Bolton")
-    mtn2.setBlackTrailObjects("Midway","Black",False,"Stowe")
-    mtn2.setBlackTrailObjects("Hayride","Black",False,"Stowe")
-    mtn3.setBlackTrailObjects("The Jet", "Black", False,"Jay Peak")
+    mtn1.setBlackTrailObjects("Cougar", "Black", False, "Bolton")
+    mtn1.setBlackTrailObjects("Bolton Outlaw", "Black", False, "Bolton")
+    mtn1.setBlackTrailObjects("Upper Crossover", "Black", False, "Bolton")
+    mtn1.setBlackTrailObjects("SpellBinder", "Black", False, "Bolton")
+    mtn1.setBlackTrailObjects("Upper Tattle Tale", "Black", False, "Bolton")
+    mtn1.setBlackTrailObjects("Hard Luck", "Black", False, "Bolton")
+    mtn2.setBlackTrailObjects("Midway", "Black", False, "Stowe")
+    mtn2.setBlackTrailObjects("Hayride", "Black", False, "Stowe")
+    mtn3.setBlackTrailObjects("The Jet", "Black", False, "Jay Peak")
 
 
     # Double Black Trails
@@ -62,17 +60,17 @@ class TestSkiDay(unittest.TestCase):
     mtn1.setDoubleBlackTrailObjects("Vermont 200", "Double Black", False, "Bolton")
     mtn2.setDoubleBlackTrailObjects("Spruce Line","Double Black",False,"Stowe")
 
-    mtn3.setDoubleBlackTrailObjects("Cayonland","Double Black", False, "Jay Peak")
-    mtn3.setDoubleBlackTrailObjects("Purgatory","Double Black", True, "Jay Peak")
+    mtn3.setDoubleBlackTrailObjects("Cayonland", "Double Black", False, "Jay Peak")
+    mtn3.setDoubleBlackTrailObjects("Purgatory", "Double Black", True, "Jay Peak")
 
     
     # Glade Trails
-    mtn1.setGladeTrailObjects("Vista Glades","Glade",True,"Bolton")
-    mtn2.setGladeTrailObjects("Upper Nose Dive","Glade",False,"Stowe")
-    mtn3.setGladeTrailObjects("Stateside Glade","Glade",False,"Jay Peak")
+    mtn1.setGladeTrailObjects("Vista Glades", "Glade", True, "Bolton")
+    mtn2.setGladeTrailObjects("Upper Nose Dive", "Glade", False, "Stowe")
+    mtn3.setGladeTrailObjects("Stateside Glade", "Glade", False, "Jay Peak")
 
     # Skiers/Snowboarders
-    skier1 = skierSnowboarder.skierSnowboarder("Michelle",20,"Intermediate", 69, 60, True)    
+    skier1 = skierSnowboarder.skierSnowboarder("Michelle", 20, "Intermediate", 69, 60, True)
 
     skier2 = skierSnowboarder.skierSnowboarder("Lauren", 20, "Advanced", 109, 140, True)
 
@@ -92,7 +90,8 @@ class TestSkiDay(unittest.TestCase):
     skiDay.addSkierSnowboarder(skier3)
     skiDay.addSkierSnowboarder(skier4)
 
-
+def test_skiday(self):
+  print("test_skiday()")
 
 if __name__ == "__main__":
   print("YAY")
