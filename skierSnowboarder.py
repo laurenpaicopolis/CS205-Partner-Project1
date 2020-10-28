@@ -26,8 +26,8 @@ class SkierSnowboarder:
       # verify that night skiing is a boolean
       return self.nightSkiing
 
-    def setName(self):
-      name = self.name
-    
+    def setName(self, name):
+      self.name = name
+
     
 

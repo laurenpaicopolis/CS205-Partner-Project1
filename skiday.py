@@ -1,8 +1,9 @@
 import vtmountain
 import skierSnowboarder
-from numpy.random import seed
-from numpy.random import randint
-seed(1)
+import random
+#from numpy.random import seed
+#from numpy.random import randint
+#seed(1)
 
 
 class SkiDay:
@@ -19,15 +20,23 @@ class SkiDay:
     return self.skierSnowperson
 
   def addSkierSnowboarder(self, skierToAdd):
-    # go through each skier/snowboarder
-    for skier in self.skierSnowboarderList:
-
-      # if two people have the same name, add a number to the end of their name
-      if skier.getName() == skierToAdd.getName():
-        # TODO: Make sure the same random number is not generated twice
-        value = randint(0, 100, 1)
-        skierToAdd.setName(skierToAdd.getName() + str(value))
-        self.skierSnowboarderList.append(skierToAdd)
+    if len(self.skierSnowboarderList) == 0:
+      self.skierSnowboarderList.append(skierToAdd)
+    else:
+      # go through each skier/snowboarder
+      for skier in self.skierSnowboarderList:
+        # if two people have the same name, add a number to the end of their name
+        if skier.getName() == skierToAdd.getName():
+          # TODO: Make sure the same random number is not generated twice
+          value = random.randint(1, 100)
+          # TODO: FIX BUG!!!!!!
+          newName1 = skierToAdd.getName()
+          newName = str(newName1) + str(value)
+          #print(newName)
+          skierToAdd.setName(newName)
+          self.skierSnowboarderList.append(skierToAdd)
+        else:
+          self.skierSnowboarderList.append(skierToAdd)
 
   def addVermontMountains(self, mountainToAdd):
     self.vtMountains.append(mountainToAdd)
@@ -39,7 +48,7 @@ class SkiDay:
     for person in self.skierSnowboarderList:
       # get the price wanting to pay, distance willing to go, and skill level of the skier/snowboader
       keyName = person.getName()
-      finalizedSkiDay[keyName]
+      finalizedSkiDay[keyName] = []
       price = person.getPrice()
       distance = person.getHowFar()
       userMountainList = []
