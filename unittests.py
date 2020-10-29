@@ -76,9 +76,9 @@ class TestSkiDay(unittest.TestCase):
     # price, howFar
     cls.skier1 = skierSnowboarder.SkierSnowboarder("Michelle", 20, "Intermediate", 69, 60, True)
 
-    cls.skier2 = skierSnowboarder.SkierSnowboarder("Lauren", 20, "Advanced", 109, 140, True)
+    cls.skier2 = skierSnowboarder.SkierSnowboarder("Michelle", 20, "Advanced", 109, 140, True)
 
-    cls.skier3 = skierSnowboarder.SkierSnowboarder("Jason", 25, "Beginner", 105, 121, False)
+    cls.skier3 = skierSnowboarder.SkierSnowboarder("Michelle", 25, "Beginner", 105, 121, False)
 
     cls.skier4 = skierSnowboarder.SkierSnowboarder("Zach", 21, "Beginner", 95, 141, False)
 

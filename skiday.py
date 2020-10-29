@@ -24,19 +24,18 @@ class SkiDay:
       self.skierSnowboarderList.append(skierToAdd)
     else:
       # go through each skier/snowboarder
+      nameCount = 2
       for skier in self.skierSnowboarderList:
         # if two people have the same name, add a number to the end of their name
         if skier.getName() == skierToAdd.getName():
-          # TODO: Make sure the same random number is not generated twice
-          value = random.randint(1, 100)
-          # TODO: FIX BUG!!!!!!
           newName1 = skierToAdd.getName()
-          newName = str(newName1) + str(value)
-          #print(newName)
+          newName = str(newName1) + '_' + str(nameCount)
+          fixedName = newName.split('_')
+          newName = fixedName[0] + '_' + str(nameCount)
           skierToAdd.setName(newName)
-          self.skierSnowboarderList.append(skierToAdd)
-        else:
-          self.skierSnowboarderList.append(skierToAdd)
+          nameCount += 1
+
+      self.skierSnowboarderList.append(skierToAdd)
 
   def addVermontMountains(self, mountainToAdd):
     self.vtMountains.append(mountainToAdd)
