@@ -37,15 +37,15 @@ class vtmountain:
     def getAllGladeTrails(self):
       return self.gladeTrials
 
-    def getDayPassPrice(self):
-      if self.dayPassPrice < 0:
-        self.dayPassPrice = 0
+    def getTotalAmount(self):
+        if self.dayPassPrice < 0:
+            self.dayPassPrice = 0
         return self.dayPassPrice
 
     def nightSkiing(self):
       return self.nightSkiing
 
-    def distanceFromUVM(self):
+    def getHowFarFromUVM(self):
       if self.distanceFromUVM < 0:
         self.distanceFromUVM = 0
       return self.distanceFromUVM

@@ -41,13 +41,12 @@ class SkiDay:
     self.vtMountains.append(mountainToAdd)
 
   def pickVermontMountain(self):
-    global finalizedSkiDay
     addedNum = 0
     # go through each skier/snowboarder in the list
     for person in self.skierSnowboarderList:
       # get the price wanting to pay, distance willing to go, and skill level of the skier/snowboader
       keyName = person.getName()
-      finalizedSkiDay[keyName] = []
+      self.finalizedSkiDay[keyName] = []
       price = person.getPrice()
       distance = person.getHowFar()
       userMountainList = []
@@ -59,16 +58,16 @@ class SkiDay:
         # determine the skill level of the skier/snowboarder (what trails they should go on)
         userMountainList.append(vtmtn)
         # determine mountains in distance range
-        if distance <= 60 and not vtmtn.distanceFromUVM() <= 60:
+        if distance <= 60 and not vtmtn.getHowFarFromUVM() <= 60:
           userMountainList.remove(vtmtn)
-        elif distance <= 140 and not vtmtn.distanceFromUVM() <= 140:
+        elif distance <= 140 and not vtmtn.getHowFarFromUVM() <= 140:
           userMountainList.remove(vtmtn)
     
         # determine mountains in price range
-        if price < 70 and not vtmtn.dayPassPrice() < 70:
+        if price < 70 and not vtmtn.getTotalAmount() < 70:
           userMountainList.remove(vtmtn)
-        elif price < 110 and not vtmtn.dayPassPrice() < 110:
-          userMountainList.remove(vtmtn)
+        elif price < 110 and not vtmtn.getTotalAmount() < 110:
+          userMountainList.remove(vtmtn) #TODO: Fix bug here with removing mountain which does not exist in list
 
       # organize the dictionary with mountains and trails    
       self.finalizedSkiDay[keyName]['VTMountain'] = userMountainList
@@ -83,7 +82,7 @@ class SkiDay:
     userTrailsGlade = []
     
     for person in self.skierSnowboarderList:
-      finalizedSkiDay[person.getName()]['VTMountain'] = userMountainList
+      self.finalizedSkiDay[person.getName()]['VTMountain'] = userMountainList
       skillLevel = person.getSkillLevel()
       nightSkiing = person.getNightSkiing()
       for vtmtn in userMountainList:
@@ -134,11 +133,11 @@ class SkiDay:
             elif not nightSkiing:
               userTrailsDoubleBlack.append(trailSelected)
             
-      finalizedSkiDay[person]['GreenTrails'] = userTrailsGreen
-      finalizedSkiDay[person]['BlueTrails'] = userTrailsBlue
-      finalizedSkiDay[person]['BlackTrails'] = userTrailsBlack
-      finalizedSkiDay[person]['DoubleBlackTrails'] = userTrailsDoubleBlack
-      finalizedSkiDay[person]['GladeTrails'] = userTrailsGlade
+      self.finalizedSkiDay[person]['GreenTrails'] = userTrailsGreen
+      self.finalizedSkiDay[person]['BlueTrails'] = userTrailsBlue
+      self.finalizedSkiDay[person]['BlackTrails'] = userTrailsBlack
+      self.finalizedSkiDay[person]['DoubleBlackTrails'] = userTrailsDoubleBlack
+      self.finalizedSkiDay[person]['GladeTrails'] = userTrailsGlade
 
   def getFinalizedSkiDay(self):
     return self.finalizedSkiDay
