@@ -2,7 +2,7 @@ import trail
 
 class vtmountain: 
 
-    def __init__(self, name, greenTrails, blueTrails, blackTrails, doubleBlackTrails, gladeTrials, totalTrails, distanceFromUVM, nightSkiing,dayPassPrice):
+    def __init__(self, name, greenTrails, blueTrails, blackTrails, doubleBlackTrails, gladeTrials, totalTrails, distanceFromUVM, nightSkiing, dayPassPrice):
       self.greenTrailObjects = []
       self.blueTrailObjects = []
       self.blackTrailObjects = []

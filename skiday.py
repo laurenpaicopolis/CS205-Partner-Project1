@@ -46,31 +46,41 @@ class SkiDay:
     for person in self.skierSnowboarderList:
       # get the price wanting to pay, distance willing to go, and skill level of the skier/snowboader
       keyName = person.getName()
-      self.finalizedSkiDay[keyName] = []
+      self.finalizedSkiDay[keyName] = {}
       price = person.getPrice()
       distance = person.getHowFar()
-      userMountainList = []
+      self.userMountainList = []
+      self.finalMountainList = []
       
       # go through each mountain in the list of VT mountains to determine what 
       # trails on the mountains the skier/snowboader should go to
       for vtmtn in self.vtMountains:
         # goes into determineTrailsForDay
         # determine the skill level of the skier/snowboarder (what trails they should go on)
-        userMountainList.append(vtmtn)
+        self.userMountainList.append(vtmtn)
         # determine mountains in distance range
-        if distance <= 60 and not vtmtn.getHowFarFromUVM() <= 60:
-          userMountainList.remove(vtmtn)
-        elif distance <= 140 and not vtmtn.getHowFarFromUVM() <= 140:
-          userMountainList.remove(vtmtn)
-    
+      for vtmtn in self.userMountainList:
+        # if distance <= 60 and not vtmtn.getHowFarFromUVM() <= 60:
+        #   self.userMountainList.remove(vtmtn)
+        # elif distance <= 140 and not vtmtn.getHowFarFromUVM() <= 140:
+        #   self.userMountainList.remove(vtmtn)
+        if distance < vtmtn.getHowFarFromUVM():
+          self.userMountainList.remove(vtmtn)
+      for vtmtn in self.userMountainList:
         # determine mountains in price range
-        if price < 70 and not vtmtn.getTotalAmount() < 70:
-          userMountainList.remove(vtmtn)
-        elif price < 110 and not vtmtn.getTotalAmount() < 110:
-          userMountainList.remove(vtmtn) #TODO: Fix bug here with removing mountain which does not exist in list
+        # if price < 70 and not vtmtn.getTotalAmount() < 70:
+        #   self.userMountainList.remove(vtmtn)
+        # elif price < 110 and not vtmtn.getTotalAmount() < 110:
+        #   self.userMountainList.remove(vtmtn)
+        if price < vtmtn.getTotalAmount():
+          self.userMountainList.remove(vtmtn)
 
-      # organize the dictionary with mountains and trails    
-      self.finalizedSkiDay[keyName]['VTMountain'] = userMountainList
+      # organize the dictionary with mountains and trails
+      for mountain in self.userMountainList:
+        self.finalMountainList.append(mountain.getName())
+      self.finalizedSkiDay[keyName]['VT Mountains'] = self.finalMountainList
+
+      #self.finalizedSkiDay[keyName]['VTMountain'] = self.userMountainList
 
 
   def determineTrailsForDay(self):
@@ -82,7 +92,8 @@ class SkiDay:
     userTrailsGlade = []
     
     for person in self.skierSnowboarderList:
-      self.finalizedSkiDay[person.getName()]['VTMountain'] = userMountainList
+      #self.finalizedSkiDay[person.getName()]['VTMountain'] = userMountainList
+      self.finalizedSkiDay[person.getName()]['VT Mountains'] = []
       skillLevel = person.getSkillLevel()
       nightSkiing = person.getNightSkiing()
       for vtmtn in userMountainList:
@@ -133,11 +144,11 @@ class SkiDay:
             elif not nightSkiing:
               userTrailsDoubleBlack.append(trailSelected)
             
-      self.finalizedSkiDay[person]['GreenTrails'] = userTrailsGreen
-      self.finalizedSkiDay[person]['BlueTrails'] = userTrailsBlue
-      self.finalizedSkiDay[person]['BlackTrails'] = userTrailsBlack
-      self.finalizedSkiDay[person]['DoubleBlackTrails'] = userTrailsDoubleBlack
-      self.finalizedSkiDay[person]['GladeTrails'] = userTrailsGlade
+      self.finalizedSkiDay[person.getName()]['GreenTrails'] = userTrailsGreen
+      self.finalizedSkiDay[person.getName()]['BlueTrails'] = userTrailsBlue
+      self.finalizedSkiDay[person.getName()]['BlackTrails'] = userTrailsBlack
+      self.finalizedSkiDay[person.getName()]['DoubleBlackTrails'] = userTrailsDoubleBlack
+      self.finalizedSkiDay[person.getName()]['GladeTrails'] = userTrailsGlade
 
   def getFinalizedSkiDay(self):
     return self.finalizedSkiDay

@@ -59,9 +59,9 @@ class TestSkiDay(unittest.TestCase):
 
 
     # Double Black Trails
-    cls.mtn1.setDoubleBlackTrailObjects("Five Corners","Double Black", True, "Bolton")
+    cls.mtn1.setDoubleBlackTrailObjects("Five Corners", "Double Black", True, "Bolton")
     cls.mtn1.setDoubleBlackTrailObjects("Vermont 200", "Double Black", False, "Bolton")
-    cls.mtn2.setDoubleBlackTrailObjects("Spruce Line","Double Black",False,"Stowe")
+    cls.mtn2.setDoubleBlackTrailObjects("Spruce Line", "Double Black", False, "Stowe")
 
     cls.mtn3.setDoubleBlackTrailObjects("Cayonland", "Double Black", False, "Jay Peak")
     cls.mtn3.setDoubleBlackTrailObjects("Purgatory", "Double Black", True, "Jay Peak")
@@ -76,9 +76,9 @@ class TestSkiDay(unittest.TestCase):
     # price, howFar
     cls.skier1 = skierSnowboarder.SkierSnowboarder("Michelle", 20, "Intermediate", 69, 60, True)
 
-    cls.skier2 = skierSnowboarder.SkierSnowboarder("Michelle", 20, "Advanced", 109, 140, True)
+    cls.skier2 = skierSnowboarder.SkierSnowboarder("Lauren", 20, "Advanced", 109, 140, True)
 
-    cls.skier3 = skierSnowboarder.SkierSnowboarder("Michelle", 25, "Beginner", 105, 121, False)
+    cls.skier3 = skierSnowboarder.SkierSnowboarder("Jason", 25, "Beginner", 105, 121, False)
 
     cls.skier4 = skierSnowboarder.SkierSnowboarder("Zach", 21, "Beginner", 95, 141, False)
 
@@ -106,9 +106,15 @@ class TestSkiDay(unittest.TestCase):
     # Lauren - Bolton, Stowe, Jay Peak
     # Jason - Bolton, Stowe, Jay Peak
     # Zach - Bolton and Jay Peak
-    mountainsSelected = {"Michelle": ["Bolton"], "Lauren": ["Bolton", "Stowe", "Jay Peak"],
-                         "Jason": ["Bolton", "Stowe", "Jay Peak"], "Zach": ["Bolton", "Jay Peak"]}
+    mountainsSelected = {"Michelle": {"VT Mountains": ["Bolton"]}, "Lauren": {"VT Mountains": ["Bolton", "Stowe", "Jay Peak"]},
+                         "Jason": {"VT Mountains": ["Bolton", "Stowe", "Jay Peak"]}, "Zach": {"VT Mountains": ["Bolton", "Jay Peak"]}}
+    self.assertEqual(mountainsSelected, mountains)
 
+    # test determineTrailsForDay
+    self.skiDay.determineTrailsForDay()
+    trails = self.skiDay.getFinalizedSkiDay()
+    print("\n Trails \n")
+    print(trails)
 
 if __name__ == "__main__":
   print("YAY")
