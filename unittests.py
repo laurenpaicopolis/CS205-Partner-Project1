@@ -23,6 +23,7 @@ class TestSkiDay(unittest.TestCase):
     cls.mtn1.setGreenTrailObjects("Slide", "Green", True, "Bolton")
     cls.mtn1.setGreenTrailObjects("Snowball", "Green", True, "Bolton")
     cls.mtn1.setGreenTrailObjects("Upper Villager", "Green", True, "Bolton")
+
     cls.mtn2.setGreenTrailObjects("Cross Over", "Green", False, "Stowe")
     cls.mtn2.setGreenTrailObjects("Inspiration", "Green", False, "Stowe")
 
@@ -47,14 +48,16 @@ class TestSkiDay(unittest.TestCase):
 
 
     # Black Trails
-    cls.mtn1.setBlackTrailObjects("Cougar", "Black", False, "Bolton")
+    cls.mtn1.setBlackTrailObjects("Cougar", "Black", True, "Bolton")
     cls.mtn1.setBlackTrailObjects("Bolton Outlaw", "Black", False, "Bolton")
     cls.mtn1.setBlackTrailObjects("Upper Crossover", "Black", False, "Bolton")
     cls.mtn1.setBlackTrailObjects("SpellBinder", "Black", False, "Bolton")
-    cls.mtn1.setBlackTrailObjects("Upper Tattle Tale", "Black", False, "Bolton")
+    cls.mtn1.setBlackTrailObjects("Upper Tattle Tale", "Black", True, "Bolton")
     cls.mtn1.setBlackTrailObjects("Hard Luck", "Black", False, "Bolton")
+
     cls.mtn2.setBlackTrailObjects("Midway", "Black", False, "Stowe")
     cls.mtn2.setBlackTrailObjects("Hayride", "Black", False, "Stowe")
+
     cls.mtn3.setBlackTrailObjects("The Jet", "Black", False, "Jay Peak")
 
 
@@ -117,5 +120,4 @@ class TestSkiDay(unittest.TestCase):
     print(trails)
 
 if __name__ == "__main__":
-  print("YAY")
   unittest.main()

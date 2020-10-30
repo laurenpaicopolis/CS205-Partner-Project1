@@ -84,71 +84,79 @@ class SkiDay:
 
 
   def determineTrailsForDay(self):
-    userMountainList = []
-    userTrailsGreen = []
-    userTrailsBlue = []
-    userTrailsBlack = []
-    userTrailsDoubleBlack = []
-    userTrailsGlade = []
+    #userMountainList = []
+    self.userTrailsGreen = []
+    self.userTrailsBlue = []
+    self.userTrailsBlack = []
+    self.userTrailsDoubleBlack = []
+    self.userTrailsGlade = []
     
     for person in self.skierSnowboarderList:
       #self.finalizedSkiDay[person.getName()]['VTMountain'] = userMountainList
-      self.finalizedSkiDay[person.getName()]['VT Mountains'] = []
+      self.finalizedSkiDay[person.getName()]['VT Mountains'] = self.finalMountainList
       skillLevel = person.getSkillLevel()
       nightSkiing = person.getNightSkiing()
-      for vtmtn in userMountainList:
+      self.userTrailsGreen = []
+      self.userTrailsBlue = []
+      self.userTrailsBlack = []
+      self.userTrailsDoubleBlack = []
+      self.userTrailsGlade = []
+
+      # go through each mountain that the user can go to, to select trails
+      for vtmtn in self.userMountainList:
         # Skill level is beginner
         if skillLevel == "Beginner":
-          greenTrails = vtmtn.getAllGreenTrails()
+          greenTrails = vtmtn.getAllGreenTrailObjects()
+
           # green trails
           for trailSelected in greenTrails:
             if nightSkiing and trailSelected.getNightSkiing():
-              userTrailsGreen.append(trailSelected)
+              self.userTrailsGreen.append(trailSelected.getName())
             elif not nightSkiing:
-              userTrailsGreen.append(trailSelected)   
-                
+              self.userTrailsGreen.append(trailSelected.getName())
+
         # Skill level is intermediate
         elif skillLevel == "Intermediate":
-          blueTrails = vtmtn.getAllBlueTrails()
-          blackTrails = vtmtn.getAllBlackTrails()
-            
+          blueTrails = vtmtn.getAllBlueTrailObjects()
+          blackTrails = vtmtn.getAllBlackTrailObjects()
+
           # blue trails
           for trailSelected in blueTrails:
             if nightSkiing and trailSelected.getNightSkiing():
-              userTrailsBlue.append(trailSelected)
+              self.userTrailsBlue.append(trailSelected.getName())
             elif not nightSkiing:
-              userTrailsBlue.append(trailSelected)
-                
+              self.userTrailsBlue.append(trailSelected.getName())
+
           # black trails
           for trailSelected in blackTrails:
-            userTrailsBlack.append(trailSelected)
+            #userTrailsBlack.append(trailSelected)
             if nightSkiing and trailSelected.getNightSkiing():
-              userTrailsBlack.append(trailSelected)
+              self.userTrailsBlack.append(trailSelected.getName())
             elif not nightSkiing:
-              userTrailsBlack.append(trailSelected)  
-          
+              self.userTrailsBlack.append(trailSelected.getName())
+
           # Skill Level is advanced
         elif skillLevel == "Advanced":
-          gladeTrails = vtmtn.getAllGladeTrails()
-          doubleBlackTrails = vtmtn.getAllDoubleBlackTrails()
-            
+          gladeTrails = vtmtn.getAllGladeTrailObjects()
+          doubleBlackTrails = vtmtn.getAllDoubleBlackTrailObjects()
+
           for trailSelected in gladeTrails:
             if nightSkiing and trailSelected.getNightSkiing():
-              userTrailsGlade.append(trailSelected)
+              self.userTrailsGlade.append(trailSelected.getName())
             elif not nightSkiing:
-              userTrailsGlade.append(trailSelected) 
-            
+              self.userTrailsGlade.append(trailSelected.getName())
+
           for trailSelected in doubleBlackTrails:
             if nightSkiing and trailSelected.getNightSkiing():
-              userTrailsDoubleBlack.append(trailSelected)
+              self.userTrailsDoubleBlack.append(trailSelected.getName())
             elif not nightSkiing:
-              userTrailsDoubleBlack.append(trailSelected)
+              self.userTrailsDoubleBlack.append(trailSelected.getName())
             
-      self.finalizedSkiDay[person.getName()]['GreenTrails'] = userTrailsGreen
-      self.finalizedSkiDay[person.getName()]['BlueTrails'] = userTrailsBlue
-      self.finalizedSkiDay[person.getName()]['BlackTrails'] = userTrailsBlack
-      self.finalizedSkiDay[person.getName()]['DoubleBlackTrails'] = userTrailsDoubleBlack
-      self.finalizedSkiDay[person.getName()]['GladeTrails'] = userTrailsGlade
+      self.finalizedSkiDay[person.getName()]['GreenTrails'] = self.userTrailsGreen
+      self.finalizedSkiDay[person.getName()]['BlueTrails'] = self.userTrailsBlue
+      self.finalizedSkiDay[person.getName()]['BlackTrails'] = self.userTrailsBlack
+      self.finalizedSkiDay[person.getName()]['DoubleBlackTrails'] = self.userTrailsDoubleBlack
+      self.finalizedSkiDay[person.getName()]['GladeTrails'] = self.userTrailsGlade
 
   def getFinalizedSkiDay(self):
     return self.finalizedSkiDay
