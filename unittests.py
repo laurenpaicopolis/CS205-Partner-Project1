@@ -99,23 +99,19 @@ class TestSkiDay(unittest.TestCase):
     cls.skiDay.getSkierSnowboarderList()
 
 
-  def test_skiday(self):
-    print("test_skiday()")
-    # test pickVermontMountain in SkiDay
+  def test_determinedMoutains(self):
+    print("test_determinedMountains()")
 
+    # test pickVermontMountain in SkiDay
     self.skiDay.pickVermontMountain()
     mountains = self.skiDay.getFinalizedSkiDay()
     print(mountains)
 
-    # Michelle - Bolton
-    # Lauren - Bolton, Stowe, Jay Peak
-    # Jason - Bolton, Stowe, Jay Peak
-    # Zach - Bolton and Jay Peak
+    # mountains that is expected to be associated with each skier/snowboarder
     mountainsSelected = {"Michelle": {"VT Mountains": ["Bolton"]}, "Lauren": {"VT Mountains": ["Bolton", "Stowe", "Jay Peak"]},
                          "Jason": {"VT Mountains": ["Bolton", "Stowe", "Jay Peak"]}, "Zach": {"VT Mountains": ["Bolton", "Jay Peak"]}}
+    # compare the expected dictionary to the one generated in pickVermontMountain
     self.assertEqual(mountainsSelected, mountains)
-
-
 
     trailSelected = {'Michelle': {'VT Mountains': ['Bolton'], 'GreenTrails': [], 'BlueTrails': ['Timberline Run', 'Showtime'], 'BlackTrails': ['Cougar', 'Upper Tattle Tale'], 'DoubleBlackTrails': [], 'GladeTrails': []}, 'Lauren': {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak'], 'GreenTrails': [], 'BlueTrails': [], 'BlackTrails': [], 'DoubleBlackTrails': ['Five Corners', 'Spruce Line', 'Purgatory'],
                     'GladeTrails': ['Vista Glades']}, 'Jason': {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak'], 'GreenTrails': ['Round Robin', 'Magic Carpet', 'Slide', 'Snowball', 'Upper Villager', 'Cross Over', 'Inspiration', 'Deer Run', "Queen's Highway", 'Kangaroo Trail'], 'BlueTrails': [], 'BlackTrails': [], 'DoubleBlackTrails': [], 'GladeTrails': []}, 'Zach': {'VT Mountains': ['Bolton', 'Jay Peak'],
@@ -127,7 +123,7 @@ class TestSkiDay(unittest.TestCase):
     self.assertEqual(trailSelected, trails)
     print(trails)
 
-    correctSkiers = ["Michelle","Lauren","Jason","Zach"]
+    correctSkiers = ["Michelle", "Lauren", "Jason", "Zach"]
     skierList = self.skiDay.getSkierSnowboarderList()
     listReturned = []
     for object in skierList:
