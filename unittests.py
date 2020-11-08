@@ -139,8 +139,6 @@ class TestSkiDay(unittest.TestCase):
     self.assertEqual(trailSelected, trails)
     print(trails)
 
-  def test_skiers(self):
-    print("test_skiers()")
     # add skier/snowboarder object
     skier5 = skierSnowboarder.SkierSnowboarder("Jackson", 24, "Beginner", 89, 138, False)
     self.skiDay.addSkierSnowboarder(skier5)
@@ -148,7 +146,7 @@ class TestSkiDay(unittest.TestCase):
     skierList = self.skiDay.getSkierSnowboarderList()
     listReturned = []
     for object in skierList:
-      listReturned.append(object.getName())
+        listReturned.append(object.getName())
     self.assertEqual(correctSkiers, listReturned)
 
     self.skiDay.pickVermontMountain()
@@ -163,28 +161,28 @@ class TestSkiDay(unittest.TestCase):
     self.assertEqual(addedSkierMountains, mountains)
 
     addedSkierNewTrails = {
-      'Michelle': {'VT Mountains': ['Bolton'], 'GreenTrails': [], 'BlueTrails': ['Timberline Run', 'Showtime'],
-                   'BlackTrails':
-                     ['Cougar', 'Upper Tattle Tale'], 'DoubleBlackTrails': [], 'GladeTrails': []},
-      'Lauren': {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak'], 'GreenTrails':
-        [], 'BlueTrails': [], 'BlackTrails': [], 'DoubleBlackTrails': ['Five Corners', 'Spruce Line', 'Purgatory'],
-                 'GladeTrails': ['Vista Glades']}, 'Jason':
-        {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak'],
-         'GreenTrails': ['Round Robin', 'Magic Carpet', 'Slide', 'Snowball', 'Upper Villager', 'Cross Over',
-                         'Inspiration', 'Deer Run', "Queen's Highway", 'Kangaroo Trail'], 'BlueTrails': [],
-         'BlackTrails': [], 'DoubleBlackTrails': [], 'GladeTrails': []},
-      'Zach': {'VT Mountains': ['Bolton', 'Jay Peak'],
-               'GreenTrails': ['Round Robin', 'Magic Carpet', 'Slide', 'Snowball', 'Upper Villager', 'Deer Run',
-                               "Queen's Highway", 'Kangaroo Trail'], 'BlueTrails': [], 'BlackTrails': [],
-               'DoubleBlackTrails': [], 'GladeTrails': []}, 'Jackson': {'VT Mountains': ['Bolton', 'Jay Peak'],
-                                                                        'GreenTrails': ['Round Robin', 'Magic Carpet',
-                                                                                        'Slide', 'Snowball',
-                                                                                        'Upper Villager', 'Deer Run',
-                                                                                        "Queen's Highway",
-                                                                                        'Kangaroo Trail'],
-                                                                        'BlueTrails': [],
-                                                                        'BlackTrails': [], 'DoubleBlackTrails': [],
-                                                                        'GladeTrails': []}}
+        'Michelle': {'VT Mountains': ['Bolton'], 'GreenTrails': [], 'BlueTrails': ['Timberline Run', 'Showtime'],
+                     'BlackTrails':
+                         ['Cougar', 'Upper Tattle Tale'], 'DoubleBlackTrails': [], 'GladeTrails': []},
+        'Lauren': {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak'], 'GreenTrails':
+            [], 'BlueTrails': [], 'BlackTrails': [], 'DoubleBlackTrails': ['Five Corners', 'Spruce Line', 'Purgatory'],
+                   'GladeTrails': ['Vista Glades']}, 'Jason':
+            {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak'],
+             'GreenTrails': ['Round Robin', 'Magic Carpet', 'Slide', 'Snowball', 'Upper Villager', 'Cross Over',
+                             'Inspiration', 'Deer Run', "Queen's Highway", 'Kangaroo Trail'], 'BlueTrails': [],
+             'BlackTrails': [], 'DoubleBlackTrails': [], 'GladeTrails': []},
+        'Zach': {'VT Mountains': ['Bolton', 'Jay Peak'],
+                 'GreenTrails': ['Round Robin', 'Magic Carpet', 'Slide', 'Snowball', 'Upper Villager', 'Deer Run',
+                                 "Queen's Highway", 'Kangaroo Trail'], 'BlueTrails': [], 'BlackTrails': [],
+                 'DoubleBlackTrails': [], 'GladeTrails': []}, 'Jackson': {'VT Mountains': ['Bolton', 'Jay Peak'],
+                                                                          'GreenTrails': ['Round Robin', 'Magic Carpet',
+                                                                                          'Slide', 'Snowball',
+                                                                                          'Upper Villager', 'Deer Run',
+                                                                                          "Queen's Highway",
+                                                                                          'Kangaroo Trail'],
+                                                                          'BlueTrails': [],
+                                                                          'BlackTrails': [], 'DoubleBlackTrails': [],
+                                                                          'GladeTrails': []}}
 
     self.skiDay.determineTrailsForDay()
     trails = self.skiDay.getFinalizedSkiDay()
@@ -193,11 +191,9 @@ class TestSkiDay(unittest.TestCase):
     skierList = self.skiDay.getSkierSnowboarderList()
     listReturned = []
     for object in skierList:
-      listReturned.append(object.getName())
+        listReturned.append(object.getName())
     self.assertEqual(correctSkiers, listReturned)
 
-  def test_mountains(self):
-    print("test_mountains()")
     # add mountain object
     mtn4 = vtmountain.vtmountain("Smugglers Notch", 3, 4, 1, 2, 1, 11, 110, True, 90)
     correctMountains = ["Bolton", "Stowe", "Jay Peak", "Smugglers Notch"]
@@ -262,12 +258,9 @@ class TestSkiDay(unittest.TestCase):
       mtnReturned.append(vt.getName())
     self.assertEqual(correctMountains, mtnReturned)
 
-
-  #def test_wrong_function(self):
-    #self.assertEqual(addedSkierNewTrails, trails)
     # Must uncomment this to fail, and comment this to pass
-    #wrongTrails = self.skiDay.wrongPickVermontMountain()
-    #self.assertEqual(wrongTrails, mountains)
+    # wrongTrails = self.skiDay.wrongPickVermontMountain()
+    # self.assertEqual(wrongTrails, mountains)
 
 
 if __name__ == "__main__":
