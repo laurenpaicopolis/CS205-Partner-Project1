@@ -12,7 +12,7 @@ class TestSkiDay(unittest.TestCase):
   @classmethod
   def setUpClass(cls):
     print('setUpClass()')
-    # distance, price
+    # create mountain objects
     cls.mtn1 = vtmountain.vtmountain("Bolton", 5, 4, 6, 2, 1, 18, 50, True, 65)
     cls.mtn2 = vtmountain.vtmountain("Stowe", 2, 3, 2, 1, 1, 9, 120, True, 105)
     cls.mtn3 = vtmountain.vtmountain("Jay Peak", 3, 4, 1, 2, 1, 11, 110, True, 90)
@@ -60,7 +60,6 @@ class TestSkiDay(unittest.TestCase):
 
     cls.mtn3.setBlackTrailObjects("The Jet", "Black", False, "Jay Peak")
 
-
     # Double Black Trails
     cls.mtn1.setDoubleBlackTrailObjects("Five Corners", "Double Black", True, "Bolton")
     cls.mtn1.setDoubleBlackTrailObjects("Vermont 200", "Double Black", False, "Bolton")
@@ -69,14 +68,12 @@ class TestSkiDay(unittest.TestCase):
     cls.mtn3.setDoubleBlackTrailObjects("Cayonland", "Double Black", False, "Jay Peak")
     cls.mtn3.setDoubleBlackTrailObjects("Purgatory", "Double Black", True, "Jay Peak")
 
-
     # Glade Trails
     cls.mtn1.setGladeTrailObjects("Vista Glades", "Glade", True, "Bolton")
     cls.mtn2.setGladeTrailObjects("Upper Nose Dive", "Glade", False, "Stowe")
     cls.mtn3.setGladeTrailObjects("Stateside Glade", "Glade", False, "Jay Peak")
 
     # Skiers/Snowboarders
-    # price, howFar
     cls.skier1 = skierSnowboarder.SkierSnowboarder("Michelle", 20, "Intermediate", 69, 60, True)
 
     cls.skier2 = skierSnowboarder.SkierSnowboarder("Lauren", 20, "Advanced", 109, 140, True)
@@ -98,36 +95,17 @@ class TestSkiDay(unittest.TestCase):
     cls.skiDay.addSkierSnowboarder(cls.skier4)
     cls.skiDay.getSkierSnowboarderList()
 
-  @classmethod
-  def tearDownClass(cls):
-    # called one time, at end
-    print('tearDownClass()')
-
-  def setUp(self):
-    # called before every test
-    print('setUp()')
-
-  def tearDown(self):
-    # called after every test
-    print('tearDown()')
-
   def test_skiday(self):
     print("test_skiday()")
     # test pickVermontMountain in SkiDay
-
     self.skiDay.pickVermontMountain()
     mountains = self.skiDay.getFinalizedSkiDay()
-    print(mountains)
 
-    # Michelle - Bolton
-    # Lauren - Bolton, Stowe, Jay Peak
-    # Jason - Bolton, Stowe, Jay Peak
-    # Zach - Bolton and Jay Peak
+    # the correct dictionary of mountains corresponding to skiers/snowboarders
     mountainsSelected = {"Michelle": {"VT Mountains": ["Bolton"]}, "Lauren": {"VT Mountains": ["Bolton", "Stowe", "Jay Peak"]},
                          "Jason": {"VT Mountains": ["Bolton", "Stowe", "Jay Peak"]}, "Zach": {"VT Mountains": ["Bolton", "Jay Peak"]}}
+    # first test case
     self.assertEqual(mountainsSelected, mountains)
-
-
 
     trailSelected = {'Michelle': {'VT Mountains': ['Bolton'], 'GreenTrails': [], 'BlueTrails': ['Timberline Run', 'Showtime'], 'BlackTrails': ['Cougar', 'Upper Tattle Tale'], 'DoubleBlackTrails': [], 'GladeTrails': []}, 'Lauren': {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak'], 'GreenTrails': [], 'BlueTrails': [], 'BlackTrails': [], 'DoubleBlackTrails': ['Five Corners', 'Spruce Line', 'Purgatory'],
                     'GladeTrails': ['Vista Glades']}, 'Jason': {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak'], 'GreenTrails': ['Round Robin', 'Magic Carpet', 'Slide', 'Snowball', 'Upper Villager', 'Cross Over', 'Inspiration', 'Deer Run', "Queen's Highway", 'Kangaroo Trail'], 'BlueTrails': [], 'BlackTrails': [], 'DoubleBlackTrails': [], 'GladeTrails': []}, 'Zach': {'VT Mountains': ['Bolton', 'Jay Peak'],
@@ -135,9 +113,8 @@ class TestSkiDay(unittest.TestCase):
     # test determineTrailsForDay
     self.skiDay.determineTrailsForDay()
     trails = self.skiDay.getFinalizedSkiDay()
-    print("\n Trails \n")
+    # second test case
     self.assertEqual(trailSelected, trails)
-    print(trails)
 
     # add skier/snowboarder object
     skier5 = skierSnowboarder.SkierSnowboarder("Jackson", 24, "Beginner", 89, 138, False)
@@ -147,17 +124,18 @@ class TestSkiDay(unittest.TestCase):
     listReturned = []
     for object in skierList:
         listReturned.append(object.getName())
+    # third test case
     self.assertEqual(correctSkiers, listReturned)
 
     self.skiDay.pickVermontMountain()
     mountains = self.skiDay.getFinalizedSkiDay()
-    print(mountains)
 
     addedSkierMountains = {'Michelle': {'VT Mountains': ['Bolton']},
                            'Lauren': {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak']},
                            'Jason': {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak']},
                            'Zach': {'VT Mountains': ['Bolton', 'Jay Peak']},
                            'Jackson': {'VT Mountains': ['Bolton', 'Jay Peak']}}
+    # fourth test case
     self.assertEqual(addedSkierMountains, mountains)
 
     addedSkierNewTrails = {
@@ -186,12 +164,15 @@ class TestSkiDay(unittest.TestCase):
 
     self.skiDay.determineTrailsForDay()
     trails = self.skiDay.getFinalizedSkiDay()
+    # fifth test case
     self.assertEqual(addedSkierNewTrails, trails)
+
     correctSkiers = ["Michelle", "Lauren", "Jason", "Zach", "Jackson"]
     skierList = self.skiDay.getSkierSnowboarderList()
     listReturned = []
     for object in skierList:
         listReturned.append(object.getName())
+    # sixth test case
     self.assertEqual(correctSkiers, listReturned)
 
     # add mountain object
@@ -202,6 +183,7 @@ class TestSkiDay(unittest.TestCase):
     mtnReturned = []
     for vt in mtnList:
       mtnReturned.append(vt.getName())
+    # seventh test case
     self.assertEqual(correctMountains, mtnReturned)
 
     self.skiDay.pickVermontMountain()
@@ -211,6 +193,7 @@ class TestSkiDay(unittest.TestCase):
                        'Jason': {'VT Mountains': ['Bolton', 'Stowe', 'Jay Peak', 'Smugglers Notch']},
                        'Zach': {'VT Mountains': ['Bolton', 'Jay Peak', 'Smugglers Notch']},
                        'Jackson': {'VT Mountains': ['Bolton', 'Jay Peak']}}
+    # eighth test case
     self.assertEqual(newMountainList, mountains)
 
     mtn4.setGreenTrailObjects("New Trail 1", "Green", True, "Smugglers Notch")
@@ -248,7 +231,7 @@ class TestSkiDay(unittest.TestCase):
                                                                                         'Kangaroo Trail'],
                                                                         'BlueTrails': [], 'BlackTrails': [],
                                                                         'DoubleBlackTrails': [], 'GladeTrails': []}}
-
+    # ninth test case
     self.assertEqual(trails, newAddedTrails)
 
     correctMountains = ["Bolton", "Stowe", "Jay Peak", "Smugglers Notch"]
@@ -256,8 +239,10 @@ class TestSkiDay(unittest.TestCase):
     mtnReturned = []
     for vt in mtnList:
       mtnReturned.append(vt.getName())
+    # tenth test case
     self.assertEqual(correctMountains, mtnReturned)
 
+    # ---------- WRONG IMPLEMENTATION TEST CASE -----------
     # Must uncomment this to fail, and comment this to pass
     # wrongTrails = self.skiDay.wrongPickVermontMountain()
     # self.assertEqual(wrongTrails, mountains)

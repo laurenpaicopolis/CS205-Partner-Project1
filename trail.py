@@ -1,5 +1,6 @@
 class Trail:
     def __init__(self, name, levelTrail, nightSkiing, nameOfMountain):
+        # initialize variables
         self.name = name
         self.levelTrail = levelTrail
         self.nightSkiing = nightSkiing

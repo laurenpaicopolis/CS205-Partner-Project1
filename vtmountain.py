@@ -3,6 +3,7 @@ import trail
 class vtmountain:
 
     def __init__(self, name, greenTrails, blueTrails, blackTrails, doubleBlackTrails, gladeTrails, totalTrails, distanceFromUVM, nightSkiing, dayPassPrice):
+        # initialize variables
         self.greenTrailObjects = []
         self.blueTrailObjects = []
         self.blackTrailObjects = []

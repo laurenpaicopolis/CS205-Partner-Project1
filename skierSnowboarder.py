@@ -1,5 +1,6 @@
 class SkierSnowboarder:
     def __init__(self, name, age, skillLevel, price, howFar, nightSkiing):
+      # initialize variables
       self.name = name
       self.age = age
       self.skillLevel = skillLevel
@@ -23,7 +24,6 @@ class SkierSnowboarder:
       return self.howFar
 
     def getNightSkiing(self):
-      # verify that night skiing is a boolean
       return self.nightSkiing
 
     def setName(self, name):

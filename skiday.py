@@ -1,9 +1,6 @@
 import vtmountain
 import skierSnowboarder
 import random
-#from numpy.random import seed
-#from numpy.random import randint
-#seed(1)
 
 
 class SkiDay:
@@ -59,20 +56,12 @@ class SkiDay:
         # goes into determineTrailsForDay
         # determine the skill level of the skier/snowboarder (what trails they should go on)
         self.userMountainList.append(vtmtn)
-        # determine mountains in distance range
+      # determine mountains in distance range
       for vtmtn in self.userMountainList:
-        # if distance <= 60 and not vtmtn.getHowFarFromUVM() <= 60:
-        #   self.userMountainList.remove(vtmtn)
-        # elif distance <= 140 and not vtmtn.getHowFarFromUVM() <= 140:
-        #   self.userMountainList.remove(vtmtn)
         if distance < vtmtn.getHowFarFromUVM():
           self.userMountainList.remove(vtmtn)
       for vtmtn in self.userMountainList:
         # determine mountains in price range
-        # if price < 70 and not vtmtn.getTotalAmount() < 70:
-        #   self.userMountainList.remove(vtmtn)
-        # elif price < 110 and not vtmtn.getTotalAmount() < 110:
-        #   self.userMountainList.remove(vtmtn)
         if price < vtmtn.getTotalAmount():
           self.userMountainList.remove(vtmtn)
 
@@ -84,11 +73,7 @@ class SkiDay:
       self.finalMountainObjects[keyName] = mountainObjectList
       self.finalizedSkiDay[keyName]['VT Mountains'] = self.finalMountainList
 
-      #self.finalizedSkiDay[keyName]['VTMountain'] = self.userMountainList
-
-
   def determineTrailsForDay(self):
-    #userMountainList = []
     self.userTrailsGreen = []
     self.userTrailsBlue = []
     self.userTrailsBlack = []
@@ -133,13 +118,12 @@ class SkiDay:
 
           # black trails
           for trailSelected in blackTrails:
-            #userTrailsBlack.append(trailSelected)
             if nightSkiing and trailSelected.getNightSkiing():
               self.userTrailsBlack.append(trailSelected.getName())
             elif not nightSkiing:
               self.userTrailsBlack.append(trailSelected.getName())
 
-          # Skill Level is advanced
+        # Skill Level is advanced
         elif skillLevel == "Advanced":
           gladeTrails = vtmtn.getAllGladeTrailObjects()
           doubleBlackTrails = vtmtn.getAllDoubleBlackTrailObjects()
@@ -202,5 +186,3 @@ class SkiDay:
       for mountain in self.userMountainList:
         self.finalMountainList.append(mountain.getName())
       self.finalizedSkiDay[keyName]['VT Mountains'] = self.finalMountainList
-
-      #self.finalizedSkiDay[keyName]['VTMountain'] = self.userMountainList
